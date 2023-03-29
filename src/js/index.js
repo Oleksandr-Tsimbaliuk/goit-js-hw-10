@@ -4,32 +4,35 @@ import '../css/styles.css';
 
 import { fetchCountries } from './fetchCountries';
 import { getRefs } from './getRefs';
-import { createCountryCard, createCountryList } from './countryMarkup';
+import { createCountryInfo, createCountryList } from './countryMarkup';
 
 const DEBOUNCE_DELAY = 300;
 const refs = getRefs();
-let arrayCountries = [];
-// arrayCountries --- place for save objectsCountries
+let arrayCountries = null;
+refs.countryList.classList.add('hidden');
+refs.countryInfo.classList.add('hidden');
+
+// arrayCountries --- for save objectsCountries
 // data           --- arrayOfObjectsCountries from backend
 // country        --- object of Country
-// const debounce = require('lodash');------------------------------------------------------------------------------
 
 refs.searchBox.addEventListener('input', debounce(onSearchBox, DEBOUNCE_DELAY));
-
 function onSearchBox(event) {
   countryName = event.target.value.trim();
+  arrayCountries = [];
 
-  if (!event.target.value) {
+  if (!countryName) {
+    cleareMarckap();
     return;
   }
 
   fetchCountries(countryName)
     .then(Data => {
       Data.map(country => {
-        console.log(country);
         arrayCountries.push(country);
       });
-      console.log(arrayCountries);
+
+      cleareMarckap();
       renderCountryCard(arrayCountries);
     })
     .catch(error =>
@@ -46,10 +49,22 @@ function renderCountryCard(country) {
     );
     return;
   } else if (arrayCountries.length >= 2 && arrayCountries.length < 10) {
+    refs.countryList.classList.remove('hidden');
     refs.countryList.innerHTML = createCountryList(country);
     return;
+  } else {
+    refs.countryInfo.classList.remove('hidden');
+    refs.countryInfo.innerHTML = createCountryInfo(country);
+    // refs.countryInfo.insertAdjacentHTML(
+    //   'beforebegin',
+    //   createCountryCard(country)
+    // );
   }
-  refs.countryInfo.innerHTML = createCountryCard(country);
-  // const markup = createCountryCard();
-  // refs.countryInfo.innerHTML = markup;
+}
+
+function cleareMarckap() {
+  refs.countryList.classList.add('hidden');
+  refs.countryInfo.classList.add('hidden');
+  refs.countryList.innerHTML = '';
+  refs.countryInfo.innerHTML = '';
 }
