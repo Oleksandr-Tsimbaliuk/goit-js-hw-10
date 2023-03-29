@@ -54,7 +54,7 @@ function renderCountryCard(country) {
     return;
   } else {
     refs.countryInfo.classList.remove('hidden');
-    refs.countryInfo.innerHTML = createCountryInfo(country);
+    createCountryInfo(country);
     // refs.countryInfo.insertAdjacentHTML(
     //   'beforebegin',
     //   createCountryCard(country)
