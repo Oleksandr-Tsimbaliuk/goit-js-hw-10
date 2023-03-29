@@ -1,4 +1,3 @@
-// ---------------------------------
 import { debounce } from 'lodash';
 import Notiflix from 'notiflix';
 import '../css/styles.css';
@@ -6,10 +5,6 @@ import '../css/styles.css';
 import { fetchCountries } from './fetchCountries';
 import { getRefs } from './getRefs';
 import { createCountryInfo, createCountryList } from './countryMarkup';
-
-// arrayCountries --- for save objectsCountries
-// data           --- arrayOfObjectsCountries from backend
-// country        --- object of Country
 
 const DEBOUNCE_DELAY = 300;
 const refs = getRefs();
@@ -36,9 +31,10 @@ function onSearchBox(event) {
       cleareMarckap();
       renderCountryCard(arrayCountries);
     })
-    .catch(error =>
-      Notiflix.Notify.failure('Oops, there is no country with that name')
-    );
+    .catch(error => {
+      console.log(error, error.stack);
+      Notiflix.Notify.failure('Oops, there is no country with that name');
+    });
 }
 
 function renderCountryCard(country) {
@@ -49,16 +45,11 @@ function renderCountryCard(country) {
     return;
   } else if (arrayCountries.length >= 2 && arrayCountries.length < 10) {
     refs.countryList.classList.remove('hidden');
-    // refs.countryList.innerHTML = createCountryList(country);
     createCountryList(country);
     return;
   } else {
     refs.countryInfo.classList.remove('hidden');
     createCountryInfo(country);
-    // refs.countryInfo.insertAdjacentHTML(
-    //   'beforebegin',
-    //   createCountryCard(country)
-    // );
   }
 }
 
