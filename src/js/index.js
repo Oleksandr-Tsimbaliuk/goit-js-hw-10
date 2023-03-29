@@ -1,3 +1,4 @@
+// ---------------------------------
 import { debounce } from 'lodash';
 import Notiflix from 'notiflix';
 import '../css/styles.css';
@@ -5,6 +6,10 @@ import '../css/styles.css';
 import { fetchCountries } from './fetchCountries';
 import { getRefs } from './getRefs';
 import { createCountryInfo, createCountryList } from './countryMarkup';
+
+// arrayCountries --- for save objectsCountries
+// data           --- arrayOfObjectsCountries from backend
+// country        --- object of Country
 
 const DEBOUNCE_DELAY = 300;
 const refs = getRefs();
@@ -49,6 +54,10 @@ function renderCountryCard(country) {
   } else {
     refs.countryInfo.classList.remove('hidden');
     refs.countryInfo.innerHTML = createCountryInfo(country);
+    // refs.countryInfo.insertAdjacentHTML(
+    //   'beforebegin',
+    //   createCountryCard(country)
+    // );
   }
 }
 

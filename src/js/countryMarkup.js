@@ -29,14 +29,12 @@ function createCountryInfo(arrayCountries) {
   />
   <h2 class="country-name">${firstCountry.name.common}</h2>
 </div>
-
-<ul class="country-info-list">
-  <li class="info-list-item">Capital: ${firstCountry.capital}</li>
-  <li class="info-list-item">Population: ${firstCountry.population}</li>
-  <li class="info-list-item">
-    Languages: ${Object.values(firstCountry.languages).join(', ')}
-  </li>
-</ul>`;
+  <p class="info-list-item">Capital: ${firstCountry.capital}</p>
+  <p class="info-list-item">Population: ${firstCountry.population}</p>
+  <p class="info-list-item">Languages: ${Object.values(
+    firstCountry.languages
+  ).join(', ')}</p>
+    `;
 }
 
 export { createCountryList, createCountryInfo };
