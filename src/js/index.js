@@ -13,9 +13,8 @@ refs.countryList.classList.add('hidden');
 refs.countryInfo.classList.add('hidden');
 
 refs.searchBox.addEventListener('input', debounce(onSearchBox, DEBOUNCE_DELAY));
-
 function onSearchBox(event) {
-  countryName = event.target.value.trim();
+  let countryName = event.target.value.trim();
   arrayCountries = [];
 
   if (!countryName) {
@@ -33,9 +32,7 @@ function onSearchBox(event) {
       renderCountryCard(arrayCountries);
     })
     .catch(error =>
-      console.log(
-        Notiflix.Notify.failure('Oops, there is no country with that name')
-      )
+      Notiflix.Notify.failure('Oops, there is no country with that name')
     );
 }
 
