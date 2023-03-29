@@ -12,11 +12,8 @@ let arrayCountries = null;
 refs.countryList.classList.add('hidden');
 refs.countryInfo.classList.add('hidden');
 
-// arrayCountries --- for save objectsCountries
-// data           --- arrayOfObjectsCountries from backend
-// country        --- object of Country
-
 refs.searchBox.addEventListener('input', debounce(onSearchBox, DEBOUNCE_DELAY));
+
 function onSearchBox(event) {
   countryName = event.target.value.trim();
   arrayCountries = [];
@@ -55,10 +52,6 @@ function renderCountryCard(country) {
   } else {
     refs.countryInfo.classList.remove('hidden');
     refs.countryInfo.innerHTML = createCountryInfo(country);
-    // refs.countryInfo.insertAdjacentHTML(
-    //   'beforebegin',
-    //   createCountryCard(country)
-    // );
   }
 }
 
