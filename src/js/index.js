@@ -49,7 +49,8 @@ function renderCountryCard(country) {
     return;
   } else if (arrayCountries.length >= 2 && arrayCountries.length < 10) {
     refs.countryList.classList.remove('hidden');
-    refs.countryList.innerHTML = createCountryList(country);
+    // refs.countryList.innerHTML = createCountryList(country);
+    createCountryList(country);
     return;
   } else {
     refs.countryInfo.classList.remove('hidden');

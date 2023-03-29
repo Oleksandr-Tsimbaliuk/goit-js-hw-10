@@ -1,7 +1,10 @@
+import { getRefs } from './getRefs';
+const refs = getRefs();
+
 function createCountryList(arrayCountries) {
-  return arrayCountries
-    .map(
-      country => `
+  refs.countryList.innerHTML = arrayCountries
+    .map(country => {
+      return `
     <li class = "country-list-item">
   <img
     class="country-img"
@@ -11,8 +14,8 @@ function createCountryList(arrayCountries) {
     height="20"
   />
   <h2 class="country-name">${country.name.common}</h2>
-</li>`
-    )
+</li>`;
+    })
     .join('');
 }
 
