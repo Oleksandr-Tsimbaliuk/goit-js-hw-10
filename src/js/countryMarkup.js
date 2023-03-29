@@ -1,4 +1,4 @@
-export function createCountryList(arrayCountries) {
+function createCountryList(arrayCountries) {
   return arrayCountries
     .map(
       country => `
@@ -16,7 +16,7 @@ export function createCountryList(arrayCountries) {
     .join('');
 }
 
-export function createCountryInfo(arrayCountries) {
+function createCountryInfo(arrayCountries) {
   firstCountry = arrayCountries[0];
   return `
   <div class="country-info-box">
@@ -30,6 +30,7 @@ export function createCountryInfo(arrayCountries) {
         <li class="info-list-item">Population: ${firstCountry.population}</li>
         <li class="info-list-item">Languages: ${Object.values(
           firstCountry.languages
-        )}</li>
-    </div>`;
+        ).join(', ')}</li></div>`;
 }
+
+export { createCountryList, createCountryInfo };
